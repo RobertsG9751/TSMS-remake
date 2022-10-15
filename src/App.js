@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MapComp from './Components/Map'
+import Modal from './UI/Modal'
 
 function App() {
+  
+  const [mapTheme, setMapTheme] = useState(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`)
+  const [isModal, setIsModal] = useState({"status": false, "data": {
+    "title": "x",
+    "type": "x"
+  }})
+
+  const toggleModal = props =>{
+    setIsModal(props)
+  }
+  const changeTheme = el => {
+    setMapTheme(el)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      {
+        isModal.status && (
+          <Modal data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
+        )
+      }
+      <div className='app'>
+        <MapComp theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
+      </div>
+    </React.Fragment>
   );
 }
 

@@ -1,0 +1,42 @@
+.btn{
+    z-index: 1000;
+    /* position: absolute; */
+    /* bottom: 0;
+    right: 0; */
+    background: linear-gradient(45deg, rgba(60,9,108,1) 29%, rgba(102,42,130,1) 100%);
+    width: 75px;
+    height: 75px;
+    /* margin: 4vmin 4vmin; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.icon_filter{
+    margin-top: 5px;
+    transform: scale(1.6);
+}
+.icon{
+    transform: scale(2.2);
+}
+.wrapper{
+    position: absolute;
+    z-index: 10050;
+    width: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    bottom: 0;
+    right: 0;
+    margin: 4vmin;
+    border-radius: 40px;
+    transition: all .2s;
+}
+.options{
+    display: none;
+    margin-right: 25px;
+    transition: all .2s;
+}

@@ -1,0 +1,32 @@
+.background{
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal{
+    width: 90vmin;
+    height: 60%;
+    position: relative;
+    background-color: #212529;
+    box-shadow: 2px 0px 5px 1px #3c096c;
+    color: white;
+}
+.btn{
+    position: absolute;
+    right: 0;
+    margin: 20px 35px;
+    padding: 5px 20px;
+    transform: scale(1.5);
+}
+.nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 13%;
+    font-size: 200%;
+}
