@@ -15,6 +15,7 @@ function App() {
     setIsModal(props)
   }
   const changeTheme = el => {
+    localStorage.setItem("mapTheme", el)
     setMapTheme(el)
   }
   return (

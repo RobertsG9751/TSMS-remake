@@ -28,6 +28,14 @@ const ChangeTheme = props => {
         props.changeTheme(`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png`)
         props.closeModal({"status": false})
     }
+    const toggleColored = el =>{
+        props.changeTheme(`http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png`)
+        props.closeModal({"status": false})
+    }
+    const toggleBrown = el =>{
+        props.changeTheme(`https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png`)
+        props.closeModal({"status": false})
+    }
 
     return(
         <div className={style.box}>
@@ -37,6 +45,8 @@ const ChangeTheme = props => {
             <Button propClass={style.btn} onClick={toggleSatelite} text="Satelite"/>
             <Button propClass={style.btn} onClick={toggleRed} text="Red"/>
             <Button propClass={style.btn} onClick={toggleBlackout} text="Blackout"/>
+            <Button propClass={style.btn} onClick={toggleColored} text="Colored"/>
+            <Button propClass={style.btn} onClick={toggleBrown} text="Brown"/>
         </div>
     )
 }
