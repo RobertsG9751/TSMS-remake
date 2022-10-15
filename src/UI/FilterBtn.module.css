@@ -25,7 +25,7 @@
 .wrapper{
     position: absolute;
     z-index: 10050;
-    width: 380px;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: flex-end;
