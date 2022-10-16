@@ -4,6 +4,7 @@ import ReactDOM from "react-dom"
 import Button from './Button'
 import ChangeTheme from '../Components/ChangeTheme'
 import Data from '../Components/Data'
+import Filter from '../Components/Filter'
 
 
 const ModalBox = props => {
@@ -11,6 +12,9 @@ const ModalBox = props => {
     const [type, setType] = useState(props.data.type)
     const closeModal = el => {
         props.closeModal({"status": false})
+    }
+    const sendFilter = e =>{
+        props.sendFilter(e)
     }
 
     return(
@@ -26,6 +30,10 @@ const ModalBox = props => {
                     type==="data" &&(
                         <Data data={props.data}></Data>
                     )
+                }{
+                    type==="filter"&&(
+                        <Filter closeModal={props.closeModal} sendFilter={sendFilter}></Filter>
+                    )
                 }
             </div>
         </div>
@@ -34,7 +42,7 @@ const ModalBox = props => {
 const Modal = props => {
     return(
         <React.Fragment>
-            {ReactDOM.createPortal(<ModalBox data={props.data} changeTheme={props.changeTheme} closeModal={props.closeModal}/>, document.getElementById("modal"))}
+            {ReactDOM.createPortal(<ModalBox sendFilter={props.sendFilter} data={props.data} changeTheme={props.changeTheme} closeModal={props.closeModal}/>, document.getElementById("modal"))}
         </React.Fragment>
     )
 }

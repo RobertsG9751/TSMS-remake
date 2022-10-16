@@ -1,0 +1,38 @@
+.container{
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box{
+    /* border: 1px solid blue; */
+    height: 100%;
+    width: 40vmin;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+.btn{
+    margin-top: 20px;
+    width: 40vmin;
+    height: 50px;
+    font-size: 125%;
+}
+.text{
+    margin-top: 8px;
+    font-size:18px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.checkbox{
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    accent-color: #4c167e;
+}
+.input{
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+}

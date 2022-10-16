@@ -5,6 +5,7 @@ import Modal from './UI/Modal'
 
 function App() {
   
+  const [filterOptions, setFilterOptions] = useState(['balsts', 'skaititaji', "kontrolieris", "vārti", "konsole"])
   const [mapTheme, setMapTheme] = useState(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`)
   const [isModal, setIsModal] = useState({"status": false, "data": {
     "title": "x",
@@ -18,15 +19,18 @@ function App() {
     localStorage.setItem("mapTheme", el)
     setMapTheme(el)
   }
+  const sendFilter = e =>{
+    setFilterOptions(e)
+  }
   return (
     <React.Fragment>
       {
         isModal.status && (
-          <Modal data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
+          <Modal sendFilter={sendFilter} data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
         )
       }
       <div className='app'>
-        <MapComp theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
+        <MapComp filters={filterOptions} theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
       </div>
     </React.Fragment>
   );

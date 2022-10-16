@@ -48,6 +48,7 @@ const MapComp = props => {
             }})
         }
     }
+    console.log(props.filters)
     return(
         <MapContainer center={[56.6511, 23.7196]} zoom={13} scrollWheelZoom={true}>
             <TileLayer key={props.theme}
@@ -57,14 +58,16 @@ const MapComp = props => {
                 {
                 systems.map(el=>{
                     return(
-                        <Marker icon={assignColor(el)} key={el.systems_id} position={[el.systems_latitude,  el.systems_longitude]}>
-                            <Popup>
-                                Iela: {el.objects_name} <br/>
-                                Garantija: {el.warranties_date} <br/>
-                                Tips: {el.type} <br/>
-                                <Button id={el.systems_id} onClick={toggleModal} propClass={style.btn} text={"Vēl dati"}></Button>
-                            </Popup>
-                        </Marker>
+                        props.filters.includes(el.type) && (
+                            <Marker icon={assignColor(el)} key={el.systems_id} position={[el.systems_latitude,  el.systems_longitude]}>
+                                <Popup>
+                                    Iela: {el.objects_name} <br/>
+                                    Garantija: {el.warranties_date} <br/>
+                                    Tips: {el.type} <br/>
+                                    <Button id={el.systems_id} onClick={toggleModal} propClass={style.btn} text={"Vēl dati"}></Button>
+                                </Popup>
+                            </Marker>
+                        )
                     )
                 })
             }
