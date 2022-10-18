@@ -48,7 +48,6 @@ const MapComp = props => {
             }})
         }
     }
-    console.log(props.filters)
     return(
         <MapContainer center={[56.6511, 23.7196]} zoom={13} scrollWheelZoom={true}>
             <TileLayer key={props.theme}

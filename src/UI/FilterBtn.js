@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import style from './FilterBtn.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMagnifyingGlass, faBars, faMapLocationDot, faFilter} from '@fortawesome/free-solid-svg-icons'
+import {faMagnifyingGlass, faBars, faMapLocationDot, faFilter, faPlus} from '@fortawesome/free-solid-svg-icons'
 import Options from './Options'
 
 const FilterBtn = props => {
@@ -32,6 +32,7 @@ const FilterBtn = props => {
             <Options type="theme" toggleModal={toggleModal} icon={faMapLocationDot}></Options>
             <Options type="search" toggleModal={toggleModal} icon={faMagnifyingGlass}></Options>
             <Options type="filter" toggleModal={toggleModal} icon={faFilter}></Options>
+            <Options type="create" toggleModal={toggleModal} icon={faPlus}></Options>
             <div onClick={showOptions} className={style.btn}>
                 <FontAwesomeIcon className={style.icon} icon={faBars}/>
             </div>

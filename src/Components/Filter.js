@@ -3,22 +3,22 @@ import Button from '../UI/Button'
 import React, {useState, useRef} from 'react'
 
 const Filter = props => {
-
-    const [checkedState, setCheckedState] = useState([])
+    
+    let checkedOptions = []
 
     const addToFilter = e => {
-        if(!checkedState.includes(e.target.id)){
-            setCheckedState(curr=>[...curr, e.target.id])
+        if(!checkedOptions.includes(e.target.id)){
+            checkedOptions.push(e.target.id)
         }
         else{
-            setCheckedState(checkedState.filter(function(item){
+            checkedOptions.filter(function(item){
                 return item !== e.target.id
-            }))
+            })
         }
     }
 
     const filterFunc = e =>{
-        props.sendFilter(checkedState)
+        props.sendFilter(checkedOptions)
         props.closeModal({"status": false})
     }
 

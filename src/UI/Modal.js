@@ -5,6 +5,7 @@ import Button from './Button'
 import ChangeTheme from '../Components/ChangeTheme'
 import Data from '../Components/Data'
 import Filter from '../Components/Filter'
+import FormOptions from '../Components/forms/FormOption'
 
 
 const ModalBox = props => {
@@ -33,6 +34,10 @@ const ModalBox = props => {
                 }{
                     type==="filter"&&(
                         <Filter closeModal={props.closeModal} sendFilter={sendFilter}></Filter>
+                    )
+                }{
+                    type==="create"&&(
+                        <FormOptions closeModal={props.closeModal}></FormOptions>
                     )
                 }
             </div>

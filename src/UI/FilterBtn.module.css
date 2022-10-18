@@ -10,6 +10,7 @@
     border: 1px solid grey;
     border-radius: 50%;
     cursor: pointer;
+    bottom: 0;
 }
 .icon_filter{
     margin-top: 5px;
@@ -21,14 +22,16 @@
 .wrapper{
     position: absolute;
     z-index: 10050;
-    width: 100vw;
+    /* width: 100vw; */
+    height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-end;
+    flex-direction: column;
     bottom: 0;
     right: 0;
-    margin-bottom: 4vmin; 
-    margin-right: 2vmin;
+    margin-bottom: 5vmin; 
+    margin-right: 3vmin;
     border-radius: 40px;
     transition: all .2s;
 }

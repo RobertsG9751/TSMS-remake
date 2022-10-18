@@ -30,6 +30,11 @@
     height: 13%;
     font-size: 200%;
 }
+/* .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
 @media only screen and (max-width: 500px) {
     .modal{
         width: 100vmin;
