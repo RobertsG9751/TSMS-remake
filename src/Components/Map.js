@@ -6,17 +6,45 @@ import FilterBtn from '../UI/FilterBtn';
 import * as Colors from '../Data/Colors'
 import Button from '../UI/Button'
 
-
 const MapComp = props => {
 
     const [systems, setSystems] = useState([])
+    let addresses = []
+    let cords = []
+    let dataObj = []
 
-    const fetchData = async (e) =>{
-        const fetchData = await fetch(`https://lux-tsms.herokuapp.com/api/v1/systems`)
-        const parsedData = await fetchData.json()
-        setSystems(parsedData)
+    const fetchData = (e) =>{
+        fetch(`https://lux-tsms.herokuapp.com/api/v1/systems`)
+        .then(data=>data.json())
+        .then(data=>{
+            setSystems(data)
+            cords = data.map(el=>{
+                return {lat: el.systems_latitude, lng: el.systems_longitude}
+            })
+            return cords
+        })
+        .then(data=>{
+            data.forEach((el, i)=>{
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${el.lat}&lon=${el.lng}`)
+                .then(data=>data.json())
+                .then(data=>{
+                    addresses.push(data.address.road.toLowerCase())
+                    return data
+                })
+                .then((data)=>{
+                    if(dataObj[i]?.address===addresses[i]){return}
+                    dataObj.push(
+                        {
+                            address: addresses[i],
+                            lat: data.lat,
+                            lng: data.lon
+                        }
+                    )
+                    localStorage.setItem("addresses", JSON.stringify(dataObj))
+                })
+            })
+        })
     }
-    
     useEffect(()=>{
         fetchData()
     }, [])
@@ -49,7 +77,7 @@ const MapComp = props => {
         }
     }
     return(
-        <MapContainer center={[56.6511, 23.7196]} zoom={13} scrollWheelZoom={true}>
+        <MapContainer key={props.zoom} center={props.cords} zoom={props.zoom} scrollWheelZoom={true}>
             <TileLayer key={props.theme}
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url={localStorage.getItem("mapTheme")?localStorage.getItem("mapTheme"):`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}

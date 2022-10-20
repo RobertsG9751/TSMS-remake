@@ -33,7 +33,7 @@ const FilterBtn = props => {
             <Options type="search" toggleModal={toggleModal} icon={faMagnifyingGlass}></Options>
             <Options type="filter" toggleModal={toggleModal} icon={faFilter}></Options>
             <Options type="create" toggleModal={toggleModal} icon={faPlus}></Options>
-            <div onClick={showOptions} className={style.btn}>
+            <div onClick={showOptions} className={`${style.btn} center`}>
                 <FontAwesomeIcon className={style.icon} icon={faBars}/>
             </div>
         </div>

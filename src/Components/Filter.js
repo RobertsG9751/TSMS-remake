@@ -23,7 +23,7 @@ const Filter = props => {
     }
 
     return(
-        <div className={style.container}>
+        <div className={`${style.container} center`}>
             <div className={style.box}>
                 <div className={style.input}>
                     <input onChange={addToFilter} id="vārti" className={style.checkbox}  type="checkbox"></input>

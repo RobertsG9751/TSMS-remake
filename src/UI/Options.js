@@ -11,7 +11,7 @@ const Options = props => {
     }
 
     return(
-        <div  onClick={toggleModal} className={`${style.options} ${style.btn} filterOption`}>
+        <div  onClick={toggleModal} className={`${style.options} ${style.btn} center filterOption`}>
                 <FontAwesomeIcon className={`${style.icon}`} icon={props.icon}/>
         </div>
     )

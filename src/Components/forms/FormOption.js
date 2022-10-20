@@ -3,7 +3,7 @@ import Button from '../../UI/Button'
 
 const FormOptions = props => {
     return(
-        <div className={style.wrapper}>
+        <div className={`${style.wrapper} center`}>
             <div className={style.subwrap}>
                 <Button propClass={style.btn} text="system"></Button>
                 <Button propClass={style.btn} text="unit"></Button>

@@ -11,6 +11,8 @@ function App() {
     "title": "x",
     "type": "x"
   }})
+  const [mapCords, setMapCords] = useState([56.6511, 23.7196])
+  const [mapZoom, setMapZoom] = useState(13)
 
   const toggleModal = props =>{
     setIsModal(props)
@@ -22,15 +24,19 @@ function App() {
   const sendFilter = e =>{
     setFilterOptions(e)
   }
+  const upAddress = e =>{
+    setMapZoom(e.zoom)
+    setMapCords([e.lat, e.lng])
+  }
   return (
     <React.Fragment>
       {
         isModal.status && (
-          <Modal sendFilter={sendFilter} data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
+          <Modal upAddress={upAddress} sendFilter={sendFilter} data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
         )
       }
       <div className='app'>
-        <MapComp filters={filterOptions} theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
+        <MapComp cords={mapCords} zoom={mapZoom} filters={filterOptions} theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
       </div>
     </React.Fragment>
   );

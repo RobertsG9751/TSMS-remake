@@ -38,7 +38,7 @@ const ChangeTheme = props => {
     }
 
     return(
-        <div className={style.box}>
+        <div className={`${style.box} center`}>
             <Button propClass={style.btn} onClick={toggleDark} text="Dark"/>
             <Button propClass={style.btn} onClick={toggleLight} text="Light"/>
             <Button propClass={style.btn} onClick={toggleDefault} text="Default"/>
