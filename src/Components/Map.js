@@ -19,35 +19,36 @@ const MapComp = props => {
         .then(data=>{
             setSystems(data)
             cords = data.map(el=>{
-                return {lat: el.systems_latitude, lng: el.systems_longitude}
+                return { lat: el.systems_latitude, lng: el.systems_longitude}
             })
             return cords
-        })
+       })
         .then(data=>{
-            data.forEach((el, i)=>{
-                fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${el.lat}&lon=${el.lng}`)
-                .then(data=>data.json())
-                .then(data=>{
-                    addresses.push(data.address.road.toLowerCase())
-                    return data
-                })
-                .then((data)=>{
-                    if(dataObj[i]?.address===addresses[i]){return}
-                    dataObj.push(
-                        {
-                            address: addresses[i].toLowerCase(),
-                            lat: data.lat,
-                            lng: data.lon
-                        }
-                    )
-                    localStorage.setItem("addresses", JSON.stringify(dataObj))
-                })
-            })
+            getCords(data)
         })
-    }
+   }
     useEffect(()=>{
         fetchData()
     }, [])
+
+    const getCords = data => {
+        data.forEach((el, i)=>{
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${el.lat}&lon=${el.lng}`)
+            .then(data=>data.json())
+            .then(data=>{
+                addresses.push(data.address.road.toLowerCase())
+                return data
+            })
+            .then((data)=>{
+                if(dataObj[i]?.address===addresses[i]){return}
+                dataObj.push(
+                {
+                    address: addresses[i]
+                })
+                localStorage.setItem("addresses", JSON.stringify(dataObj))
+            })
+        })
+    }
 
     const assignColor = (el) => {
         switch (el.type){
