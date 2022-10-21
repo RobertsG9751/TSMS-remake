@@ -26,3 +26,21 @@
     align-items: flex-end;
     font-size: large;
 }
+.error{
+    display: none;
+    color: red;
+    font-weight: bold;
+}
+.ul{
+    width: 65vmin;
+    overflow: auto;
+    text-align: center;
+}
+.li{
+    list-style: none;
+    padding: 6px 6px;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+    border-collapse: collapse;
+    margin-top: 10px;
+}

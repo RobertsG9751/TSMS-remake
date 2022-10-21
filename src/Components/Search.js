@@ -1,11 +1,13 @@
 import style from './Search.module.css'
 import Button from '../UI/Button'
-import {useEffect, useRef} from 'react'
+import {useEffect, useRef, useState} from 'react'
+import ChangeTheme from './ChangeTheme'
 
 const Search = props => {
 
-    const searchRef = useRef(null)
+    let  searchRef = useRef(null)
     let addresses = []
+    const [searchAddr, setSerachAddr] = useState([])
 
     const submitFunc = e => {
         addresses = JSON.parse(localStorage.getItem("addresses"))
@@ -14,16 +16,39 @@ const Search = props => {
                 props.upAddress({lat: element.lat, lng: element.lng, zoom: 20})
                 props.closeModal({status: false})
             }else{
-                console.log("no address found")
+                document.getElementById("error").style.display="block"
             }
         });
+    }
+    const searchChange = e =>{
+        JSON.parse(localStorage.getItem("addresses")).forEach((el, i)=>{
+            if(el.address.includes(e.target.value)){
+                if(!searchAddr.includes(el.address)){
+                    console.log(el.address)
+                    setSerachAddr(current=>[el.address])
+                }
+            }
+        })
+        // setSerachAddr(current=>[...current, searchArray])
+        // console.log(searchArray)
+    }
+    const setSearch = e =>{
+        searchRef.current.value=e.target.id
     }
 
     return(
         <div className={`${style.wrapper} center`}>
             <div className={`${style.subwrap} center`}>
                 <p className={style.text}>Meklēt:</p>
-                <input ref={searchRef} className={style.search} type="text"></input>
+                <input onChange={searchChange} ref={searchRef} className={style.search} type="text"></input>
+                <p id="error" className={style.error}>Error! Address not found!</p>
+                <ul id="searchList" className={`${style.ul}`}>
+                    {
+                        searchAddr.map(el=>{
+                            return <li key={el} onClick={setSearch} id={el} className={style.li}>{el}</li>
+                        })
+                    }
+                </ul>
                 <Button onClick={submitFunc} propClass={style.btn} text="submit"></Button>
             </div>
         </div>

@@ -77,7 +77,7 @@ const MapComp = props => {
         }
     }
     return(
-        <MapContainer key={props.zoom} center={props.cords} zoom={props.zoom} scrollWheelZoom={true}>
+        <MapContainer key={props.cords} center={props.cords} zoom={props.zoom} scrollWheelZoom={true}>
             <TileLayer key={props.theme}
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url={localStorage.getItem("mapTheme")?localStorage.getItem("mapTheme"):`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
