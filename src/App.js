@@ -25,6 +25,7 @@ function App() {
     setFilterOptions(e)
   }
   const upAddress = e =>{
+    console.log(e)
     setMapZoom(e.zoom)
     setMapCords([e.lat, e.lng])
   }

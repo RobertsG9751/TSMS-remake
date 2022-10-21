@@ -35,7 +35,7 @@ const MapComp = props => {
                     if(dataObj[i]?.address===addresses[i]){return}
                     dataObj.push(
                         {
-                            address: addresses[i],
+                            address: addresses[i].toLowerCase(),
                             lat: data.lat,
                             lng: data.lon
                         }

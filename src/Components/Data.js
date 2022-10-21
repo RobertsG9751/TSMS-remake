@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react'
 const Data = props => {
 
     const [unitData, setUnitData] = useState([])
-    console.log(unitData)
 
     const fetchUnits = async () => {
         const fetchData = await fetch(`https://lux-tsms.herokuapp.com/api/v1/units/${+props.data.id}`)

@@ -10,9 +10,10 @@ const Search = props => {
     const [searchAddr, setSerachAddr] = useState([])
 
     const submitFunc = e => {
+        console.log(searchRef.current.value)
         addresses = JSON.parse(localStorage.getItem("addresses"))
         addresses.forEach(element => {
-            if(element.address.toLowerCase().includes(searchRef.current.value)){
+            if(element.address.toLowerCase().includes(searchRef.current.value.toLowerCase())){
                 props.upAddress({lat: element.lat, lng: element.lng, zoom: 20})
                 props.closeModal({status: false})
             }else{
@@ -22,15 +23,13 @@ const Search = props => {
     }
     const searchChange = e =>{
         JSON.parse(localStorage.getItem("addresses")).forEach((el, i)=>{
-            if(el.address.includes(e.target.value)){
+            if(el.address.includes(e.target.value.toLowerCase())){
                 if(!searchAddr.includes(el.address)){
                     console.log(el.address)
                     setSerachAddr(current=>[el.address])
                 }
             }
         })
-        // setSerachAddr(current=>[...current, searchArray])
-        // console.log(searchArray)
     }
     const setSearch = e =>{
         searchRef.current.value=e.target.id
