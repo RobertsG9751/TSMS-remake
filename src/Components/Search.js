@@ -11,6 +11,8 @@ const Search = props => {
     let  searchRef = useRef(null)
     let addresses = []
     let randvar = 1;
+    let addressSet = new Set()
+    let finalArr = []
     const [searchAddr, setSerachAddr] = useState([])
 
     const submitFunc = async e => {
@@ -36,9 +38,13 @@ const Search = props => {
             else if(element.address.includes(e.target.value.toLowerCase())){
                 newArray[i] = element.address
                 searchArray = newArray.filter(a=>a)
+                searchArray.forEach(el=>{
+                    addressSet.add(el)
+                })
+                finalArr = [...addressSet]
             }
         })
-        setSerachAddr(searchArray)
+        setSerachAddr(finalArr)
     }
     const changeSearch = e =>{
         searchRef.current.value=e.target.id
