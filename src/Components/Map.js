@@ -5,13 +5,14 @@ import style from './Map.module.css'
 import FilterBtn from '../UI/FilterBtn';
 import * as Colors from '../Data/Colors'
 import Button from '../UI/Button'
+import Geocode from "react-geocode";
 
 const MapComp = props => {
+    Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+
 
     const [systems, setSystems] = useState([])
-    let addresses = []
     let cords = []
-    let dataObj = []
 
     const fetchData = (e) =>{
         fetch(`https://lux-tsms.herokuapp.com/api/v1/systems`)
@@ -31,22 +32,20 @@ const MapComp = props => {
         fetchData()
     }, [])
 
+    const addressSet = new Set()
     const getCords = data => {
         data.forEach((el, i)=>{
-            fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${el.lat}&lon=${el.lng}`)
-            .then(data=>data.json())
-            .then(data=>{
-                addresses.push(data.address.road.toLowerCase())
-                return data
-            })
-            .then((data)=>{
-                if(dataObj[i]?.address===addresses[i]){return}
-                dataObj.push(
-                {
-                    address: addresses[i]
-                })
-                localStorage.setItem("addresses", JSON.stringify(dataObj))
-            })
+            Geocode.fromLatLng(el.lat, el.lng).then(
+                (response) => {
+                  const address = response.results[0].formatted_address.split(' ');
+                  addressSet.add(address[0] + " " + address[1])
+                  let addrArr = [...addressSet]
+                  localStorage.setItem("addresses", JSON.stringify(addrArr))
+                },
+                (error) => {
+                  console.error(error);
+                }
+              );
         })
     }
 

@@ -2,24 +2,30 @@ import style from './Search.module.css'
 import Button from '../UI/Button'
 import {useEffect, useRef, useState} from 'react'
 import ChangeTheme from './ChangeTheme'
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import Geocode from "react-geocode";
 
 const Search = props => {
 
-    const provider = new OpenStreetMapProvider();
+    Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
     let  searchRef = useRef(null)
     let addresses = []
     let randvar = 1;
     let addressSet = new Set()
     let finalArr = []
+
+    console.log(JSON.parse(localStorage.getItem("addresses")))
+
     const [searchAddr, setSerachAddr] = useState([])
 
     const submitFunc = async e => {
         try{
-            const results = await provider.search({ query: "Jelgava, " + searchRef.current.value});
-            props.upAddress({lat: results[0].y, lng: results[0].x, zoom: 20})
-            props.closeModal({status: false})
+            Geocode.fromAddress("Jelgava, " + searchRef.current.value).then(
+                (response) => {
+                  const { lat, lng } = response.results[0].geometry.location;
+                  props.upAddress({lat: lat, lng: lng, zoom: 20})
+                  props.closeModal({status: false})
+            })
         }
         catch(err){
             document.getElementById("error").style.display="block"
@@ -35,8 +41,8 @@ const Search = props => {
             if(e.target.value===""){
                 setSerachAddr([])
             }
-            else if(element.address.includes(e.target.value.toLowerCase())){
-                newArray[i] = element.address
+            else if(element.toLowerCase().includes(e.target.value.toLowerCase())){
+                newArray[i] = element
                 searchArray = newArray.filter(a=>a)
                 searchArray.forEach(el=>{
                     addressSet.add(el)
