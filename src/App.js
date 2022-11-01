@@ -4,7 +4,6 @@ import MapComp from './Components/Map'
 import Modal from './UI/Modal'
 
 function App() {
-  
   const [filterOptions, setFilterOptions] = useState(['balsts', 'skaititaji', "kontrolieris", "vārti", "konsole"])
   const [mapTheme, setMapTheme] = useState(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`)
   const [isModal, setIsModal] = useState({"status": false, "data": {
@@ -28,6 +27,14 @@ function App() {
     setMapZoom(e.zoom)
     setMapCords([e.lat, e.lng])
   }
+  const isLocation = (location) =>{
+    setMapZoom(20)
+    setMapCords([location.coords.latitude, location.coords.longitude])
+  }
+  const noLocation = (error) =>{
+    console.log(error)
+  }
+  navigator.geolocation.getCurrentPosition(isLocation, noLocation)
   return (
     <React.Fragment>
       {
