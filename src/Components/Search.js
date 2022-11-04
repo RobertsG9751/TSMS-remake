@@ -6,7 +6,7 @@ import Geocode from "react-geocode";
 
 const Search = props => {
 
-    Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+   // Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
     let  searchRef = useRef(null)
     let addresses = []

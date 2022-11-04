@@ -37,15 +37,19 @@ function App() {
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(isLocation, noLocation)
   }, [])
+  const [reloadM, setReloadM] = useState(0)
+  const reloadMap = () =>{
+    setReloadM(Math.random()*10)
+  }
   return (
     <React.Fragment>
       {
         isModal.status && (
-          <Modal upAddress={upAddress} sendFilter={sendFilter} data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
+          <Modal reloadMap={reloadMap} toggleModal={toggleModal} upAddress={upAddress} sendFilter={sendFilter} data={isModal.data} changeTheme={changeTheme} closeModal={toggleModal}/>
         )
       }
       <div className='app'>
-        <MapComp cords={mapCords} zoom={mapZoom} filters={filterOptions} theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
+        <MapComp key={reloadM} cords={mapCords} zoom={mapZoom} filters={filterOptions} theme={mapTheme} mapUpFunc={toggleModal}></MapComp>
       </div>
     </React.Fragment>
   );

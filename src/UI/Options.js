@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Options = props => {
 
-    const toggleModal = (e) => {
+    const toggleModalIn = (e) => {
         props.toggleModal({"status": true, "data":{
             "title": `${props.type}`,
             "type": `${props.type}`
@@ -11,7 +11,7 @@ const Options = props => {
     }
 
     return(
-        <div  onClick={toggleModal} className={`${style.options} ${style.btn} center filterOption`}>
+        <div  onClick={toggleModalIn} className={`${style.options} ${style.btn} center filterOption`}>
                 <FontAwesomeIcon className={`${style.icon}`} icon={props.icon}/>
         </div>
     )
