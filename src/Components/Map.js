@@ -8,7 +8,7 @@ import Button from '../UI/Button'
 import Geocode from "react-geocode";
 
 const MapComp = props => {
-   // Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+   Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
 
     const [systems, setSystems] = useState([])
