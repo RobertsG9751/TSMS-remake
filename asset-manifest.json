@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TSMS-react/static/css/main.603e7009.css",
+    "main.js": "/TSMS-react/static/js/main.11699c08.js",
+    "index.html": "/TSMS-react/index.html",
+    "main.603e7009.css.map": "/TSMS-react/static/css/main.603e7009.css.map",
+    "main.11699c08.js.map": "/TSMS-react/static/js/main.11699c08.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.603e7009.css",
+    "static/js/main.11699c08.js"
+  ]
+}
